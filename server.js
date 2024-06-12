@@ -1,14 +1,20 @@
-const express = require('express');
-const weatherRoutes = require('./routes/weatherRoutes');
+import express from 'express';
+import weatherRoutes from './routes/weatherRoutes';
 
 const app = express();
 
-// Middleware para permitir CORS
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://ten-f1.vercel.app'
+];
+
 app.use((req, res, next) => {
-  // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000', 'https://ten-f1.vercel.app'); 
-  res.setHeader('Access-Control-Allow-Origin', ['http://localhost:3000', 'https://ten-f1.vercel.app']); 
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // Permite los métodos HTTP especificados
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Permite los encabezados especificados
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
 });
 
@@ -18,6 +24,28 @@ const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+
+// const express = require('express');
+// const weatherRoutes = require('./routes/weatherRoutes');
+
+// const app = express();
+
+// // Middleware para permitir CORS
+// app.use((req, res, next) => {
+//   // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000', 'https://ten-f1.vercel.app'); 
+//   res.setHeader('Access-Control-Allow-Origin', ['http://localhost:3000', 'https://ten-f1.vercel.app']); 
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // Permite los métodos HTTP especificados
+//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Permite los encabezados especificados
+//   next();
+// });
+
+// app.use('/api/weather', weatherRoutes);
+
+// const PORT = process.env.PORT || 10000;
+// app.listen(PORT, () => {
+//   console.log(`Server running on port ${PORT}`);
+// });
 
 
 // const express = require('express');

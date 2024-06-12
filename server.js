@@ -5,7 +5,7 @@ const app = express();
 
 // Middleware para permitir CORS
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000', 'https://ten-f1.vercel.app/'); // Permite solicitudes desde el frontend en localhost:3000
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000', 'https://ten-f1.vercel.app'); 
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // Permite los métodos HTTP especificados
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Permite los encabezados especificados
   next();

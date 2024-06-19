@@ -1,5 +1,7 @@
-import express from 'express';
-import weatherRoutes from './routes/weatherRoutes';
+// import express from 'express';
+// import weatherRoutes from './routes/weatherRoutes';
+const express = require('express');
+const weatherRoutes = require('./routes/weatherRoutes');
 
 const app = express();
 

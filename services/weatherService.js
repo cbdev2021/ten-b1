@@ -14,6 +14,19 @@ async function findPlaces(text) {
   }
 }
 
+
+async function getWeatherPoint(lat, lon) {
+  try {
+    const response = await fetch(`${METEOSOURCE_API_URL}/point?sections=current,hourly&lat=${lat}&lon=${lon}&language=en&units=auto&key=${apiKey}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching weather data from API:', error);
+    throw error;
+  }
+}
+
 module.exports = {
-  findPlaces
+  findPlaces,
+  getWeatherPoint,
 };
